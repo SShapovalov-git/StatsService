@@ -26,21 +26,27 @@ public class StatsService {
     }
 
     public int calculateMaxMonth(int[] sales) {
+        int monthmax=0;
         int currentMax = sales[0];
-        for (int sale : sales)
-            if (currentMax < sale) {
-                currentMax = sale;
+        for (int i=0;i<sales.length;i++) {
+            if (currentMax <= sales[i]) {
+                currentMax = sales[i];
+                monthmax = i+1;
             }
-        return currentMax;
+            }
+        return monthmax;
     }
 
     public int calculateMinMonth(int[] sales) {
+        int monthmin=0;
         int currentMin = sales[0];
-        for (int sale : sales)
-            if (currentMin > sale) {
-                currentMin = sale;
+        for (int i=0;i<sales.length;i++) {
+            if (currentMin >= sales[i]) {
+                currentMin = sales[i];
+                monthmin = i+1;
             }
-        return currentMin;
+        }
+        return monthmin;
 
 
     }
@@ -49,16 +55,33 @@ public class StatsService {
 // создание метода "Кол-во месяцев, в которых продажи были ниже среднего " в котором массив  [8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18] продаж с типом данных int
         int monthAverage = calculateAverageAmount(sales);
 // создаем переменную средний месяц и приравниваем ее к расчету где он рассчитывался т.е п 2
+        int count = 0;
         for (int sale : sales) {
 //цикл foreache тип int одной продажи из массива [8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18]
-            if (sale <= monthAverage) {
-//если одна продажа меньше или равно средней продаже
-
-                ///не понимаю как дальше
-
-            }
-
-
+            if (sale < monthAverage){
+//если одна продажа меньше средней продаже
+                count++;
+//тогда прибавляем к счетчику единицу
         }
     }
-}
+        return count;
+    }
+
+    public int calculateAboveAverage (int[] sales) {
+// создание метода "Кол-во месяцев, в которых продажи были ниже среднего " в котором массив  [8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18] продаж с типом данных int
+        int monthAverage = calculateAverageAmount(sales);
+// создаем переменную средний месяц и приравниваем ее к расчету где он рассчитывался т.е п 2
+        int count = 0;
+// обьявляем счетчик
+        for (int sale : sales) {
+//цикл foreache тип int одной продажи из массива [8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18]
+            if (sale > monthAverage){
+//если одна продажа больше средней продаже
+                count++;
+// тогда прибавляем к счетчику единицу
+            }
+        }
+        return count;
+}}
+
+
